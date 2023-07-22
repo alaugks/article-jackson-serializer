@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MappingTableSerializerDeserializerTest {
+class MappingTableSerializerDeserializerTest {
 
     //    public static final HashMap<String, String> payloadAsArray = new HashMap<>() {
     //        {
@@ -71,7 +71,7 @@ public class MappingTableSerializerDeserializerTest {
     }
 
     @Test
-    void deserializeNotSupportedType() throws IOException {
+    void deserializeNotSupportedType() {
         assertThrows(
             IOException.class,
             () -> new ObjectMapper().readValue(this.emarsysPayload, ContactDtoTypeNotSupported.class)

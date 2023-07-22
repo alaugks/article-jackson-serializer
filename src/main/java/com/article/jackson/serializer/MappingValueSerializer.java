@@ -8,18 +8,17 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.ContextualSerializer;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 public class MappingValueSerializer extends JsonSerializer<MappingValue<?>> implements ContextualSerializer {
 
-    private final HashMap<String, ?> map;
+    private final Map<String, ?> map;
 
     public MappingValueSerializer() {
         this(null);
     }
 
-    public MappingValueSerializer(HashMap<String, ?> map) {
+    public MappingValueSerializer(Map<String, ?> map) {
         this.map = map;
     }
 

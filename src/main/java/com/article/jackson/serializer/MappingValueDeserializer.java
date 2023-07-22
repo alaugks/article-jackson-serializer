@@ -11,14 +11,13 @@ import com.fasterxml.jackson.databind.type.SimpleType;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 
 public class MappingValueDeserializer extends JsonDeserializer<MappingValue<?>> implements ContextualDeserializer {
 
     private final String[] supportedTypes = {"String", "Boolean"};
 
-    private final HashMap<String, ?> map;
+    private final Map<String, ?> map;
 
     private final Type type;
 
@@ -26,7 +25,7 @@ public class MappingValueDeserializer extends JsonDeserializer<MappingValue<?>> 
         this(null, null);
     }
 
-    public MappingValueDeserializer(HashMap<String, ?> map, Type type) {
+    public MappingValueDeserializer(Map<String, ?> map, Type type) {
         this.map = map;
         this.type = type;
     }
