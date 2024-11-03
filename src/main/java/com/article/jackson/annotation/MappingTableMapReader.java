@@ -31,7 +31,7 @@ public class MappingTableMapReader {
                     }
             );
 
-            if (map.size() > 0) {
+            if (!map.isEmpty()) {
                 return map;
             }
 
