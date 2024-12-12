@@ -12,22 +12,22 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonAutoDetect(
-        fieldVisibility = JsonAutoDetect.Visibility.ANY,
-        getterVisibility = JsonAutoDetect.Visibility.NONE,
-        setterVisibility = JsonAutoDetect.Visibility.NONE,
-        isGetterVisibility = JsonAutoDetect.Visibility.NONE
+		fieldVisibility = JsonAutoDetect.Visibility.ANY,
+		getterVisibility = JsonAutoDetect.Visibility.NONE,
+		setterVisibility = JsonAutoDetect.Visibility.NONE,
+		isGetterVisibility = JsonAutoDetect.Visibility.NONE
 )
 public class ContactDtoTypeNotSupported {
-    @MappingTable(map = "{\"1\": \"bar\"}")
-    @JsonDeserialize(using = MappingValueDeserializer.class)
-    @JsonProperty("1")
-    private MappingValue<Integer> property;
+	@MappingTable(map = "{\"1\": \"bar\"}")
+	@JsonDeserialize(using = MappingValueDeserializer.class)
+	@JsonProperty("1")
+	private MappingValue<Integer> property;
 
-    public int getProperty() {
-        return property.getValue();
-    }
+	public int getProperty() {
+		return property.getValue();
+	}
 
-    public void setProperty(int property) {
-        this.property = new MappingValue<>(property);
-    }
+	public void setProperty(int property) {
+		this.property = new MappingValue<>(property);
+	}
 }

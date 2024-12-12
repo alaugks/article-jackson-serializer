@@ -1,10 +1,12 @@
 package com.article.jackson.annotation;
 
-import java.lang.annotation.*;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-@Documented
 public @interface MappingTable {
-    String map() default "{}";
+	String map() default "{}";
 }
