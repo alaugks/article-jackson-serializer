@@ -1,9 +1,8 @@
 package com.article.jackson.annotation;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import com.article.jackson.exception.MappingRuntimeException;
+import com.article.jackson.exception.MappingTableRuntimeException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.BeanProperty;
@@ -22,7 +21,7 @@ public class MappingTableMapReader {
 			MappingTable annotation = property.getAnnotation(MappingTable.class);
 
 			if (annotation == null) {
-				throw new MappingRuntimeException("Annotation @MappingTable not set at property");
+				throw new MappingTableRuntimeException("Annotation @MappingTable not set at property");
 			}
 
 			return new ObjectMapper().readValue(
@@ -32,7 +31,7 @@ public class MappingTableMapReader {
 			);
 		}
 		catch (JsonProcessingException e) {
-			throw new MappingRuntimeException("Error JSON processing: " + e.getMessage());
+			throw new MappingTableRuntimeException("Error JSON processing: " + e.getMessage());
 		}
 	}
 }
