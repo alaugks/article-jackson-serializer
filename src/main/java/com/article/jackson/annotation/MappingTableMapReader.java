@@ -16,7 +16,7 @@ public class MappingTableMapReader {
 		this.property = property;
 	}
 
-	public Map<String, ?> getMap() {
+	public Map<String, Object> getMap() {
 		try {
 			MappingTable annotation = property.getAnnotation(MappingTable.class);
 

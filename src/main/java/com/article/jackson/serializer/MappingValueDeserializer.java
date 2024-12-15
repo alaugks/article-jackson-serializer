@@ -17,7 +17,7 @@ public class MappingValueDeserializer extends JsonDeserializer<MappingValue<?>> 
 
 	private final String[] supportedTypes = {"String", "Boolean"};
 
-	private final Map<String, ?> map;
+	private final Map<String, Object> map;
 
 	private final Type type;
 
@@ -25,7 +25,7 @@ public class MappingValueDeserializer extends JsonDeserializer<MappingValue<?>> 
 		this(null, null);
 	}
 
-	public MappingValueDeserializer(Map<String, ?> map, Type type) {
+	public MappingValueDeserializer(Map<String, Object> map, Type type) {
 		this.map = map;
 		this.type = type;
 	}
