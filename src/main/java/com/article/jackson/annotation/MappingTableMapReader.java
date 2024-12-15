@@ -17,7 +17,7 @@ public class MappingTableMapReader {
 		this.property = property;
 	}
 
-	public Map<String, ?> getMap() { // NOSONAR
+	public Map<String, ?> getMap() {
 		try {
 			MappingTable annotation = property.getAnnotation(MappingTable.class);
 
@@ -25,21 +25,14 @@ public class MappingTableMapReader {
 				throw new MappingRuntimeException("Annotation @MappingTable not set at property");
 			}
 
-			HashMap<String, ?> map = new ObjectMapper().readValue(
+			return new ObjectMapper().readValue(
 					annotation.map(),
 					new TypeReference<>() {
 					}
 			);
-
-			if (!map.isEmpty()) {
-				return map;
-			}
-
-			throw new MappingRuntimeException("MappingTable not defined");
-
 		}
 		catch (JsonProcessingException e) {
-			throw new MappingRuntimeException(e);
+			throw new MappingRuntimeException("Error JSON processing: " + e.getMessage());
 		}
 	}
 }
