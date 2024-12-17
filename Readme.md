@@ -6,22 +6,7 @@ https://dev.to/elevado/create-a-custom-jackson-jsonserializer-und-jsondeserializ
 
 ## Example for Annotation @MappingTable with HashMap
 
-A HashMap cannot be defined directly in an annotation.
-
-The following example is <u>**NOT**</u> possible:
-
-```Java
-public static Map<Object, Object> salutationMap = new HashMap<>() {{
-    put("1", "MALE");
-    put("2", "FEMALE");
-    put("3", "DIVERS");
-}};
-
-@MappingTable(map = salutationMap)
-private MappingValue<String> salutation;
-```
-
-A HashMap can be used with Enum, Class or nested Annotation:
+See article: [Using a HashMap in a custom Annotation](https://dev.to/alaugks/using-a-hashmap-in-a-custom-annotation-4boa)
 
 * [Example with Enum]( https://github.com/alaugks/article-jackson-serializer/tree/mapping-table/enum)
 * [Example with Class](https://github.com/alaugks/article-jackson-serializer/tree/mapping-table/class)
