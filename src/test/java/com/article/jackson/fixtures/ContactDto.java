@@ -3,6 +3,7 @@ package com.article.jackson.fixtures;
 import java.time.LocalDate;
 
 import com.article.jackson.annotation.MappingTable;
+import com.article.jackson.annotation.Maps;
 import com.article.jackson.serializer.MappingValue;
 import com.article.jackson.serializer.MappingValueDeserializer;
 import com.article.jackson.serializer.MappingValueSerializer;
@@ -41,13 +42,13 @@ public class ContactDto {
 	private LocalDate birthday;
 
 	@JsonProperty("46")
-	@MappingTable(map = "{\"1\": \"MALE\", \"2\": \"FEMALE\", \"6\": \"DIVERS\"}")
+	@MappingTable(map = Maps.SALUTATION)
 	@JsonSerialize(using = MappingValueSerializer.class)
 	@JsonDeserialize(using = MappingValueDeserializer.class)
 	private MappingValue<String> salutation;
 
 	@JsonProperty("100674")
-	@MappingTable(map = "{\"1\": true, \"2\": false}")
+	@MappingTable(map = Maps.MARKETING_INFORMATION)
 	@JsonSerialize(using = MappingValueSerializer.class)
 	@JsonDeserialize(using = MappingValueDeserializer.class)
 	private MappingValue<Boolean> marketingInformation;

@@ -1,6 +1,7 @@
 package com.article.jackson.fixtures;
 
 import com.article.jackson.annotation.MappingTable;
+import com.article.jackson.annotation.Maps;
 import com.article.jackson.serializer.MappingValue;
 import com.article.jackson.serializer.MappingValueDeserializer;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -18,7 +19,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 		isGetterVisibility = JsonAutoDetect.Visibility.NONE
 )
 public class ContactDtoTypeNotSupported {
-	@MappingTable(map = "{\"1\": \"bar\"}")
+    @MappingTable(map = Maps.SALUTATION)
 	@JsonDeserialize(using = MappingValueDeserializer.class)
 	@JsonProperty("1")
 	private MappingValue<Integer> property;
