@@ -12,13 +12,13 @@ import com.fasterxml.jackson.databind.ser.ContextualSerializer;
 
 public class MappingValueSerializer extends JsonSerializer<MappingValue<?>> implements ContextualSerializer {
 
-	private final Map<String, Object> map;
+	private final Map<String, String> map;
 
 	public MappingValueSerializer() {
 		this(null);
 	}
 
-	public MappingValueSerializer(Map<String, Object> map) {
+	public MappingValueSerializer(Map<String, String> map) {
 		this.map = map;
 	}
 

@@ -1,5 +1,6 @@
 package com.article.jackson.fixtures;
 
+import com.article.jackson.annotation.MappingItem;
 import com.article.jackson.annotation.MappingTable;
 import com.article.jackson.serializer.MappingValue;
 import com.article.jackson.serializer.MappingValueDeserializer;
@@ -12,13 +13,15 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonAutoDetect(
-		fieldVisibility = JsonAutoDetect.Visibility.ANY,
-		getterVisibility = JsonAutoDetect.Visibility.NONE,
-		setterVisibility = JsonAutoDetect.Visibility.NONE,
-		isGetterVisibility = JsonAutoDetect.Visibility.NONE
+        fieldVisibility = JsonAutoDetect.Visibility.ANY,
+        getterVisibility = JsonAutoDetect.Visibility.NONE,
+        setterVisibility = JsonAutoDetect.Visibility.NONE,
+        isGetterVisibility = JsonAutoDetect.Visibility.NONE
 )
 public class ContactDtoTypeNotSupported {
-	@MappingTable(map = "{\"1\": \"bar\"}")
+    @MappingTable(items = {
+            @MappingItem(fieldValueId = "1", value = "MALE")
+    })
 	@JsonDeserialize(using = MappingValueDeserializer.class)
 	@JsonProperty("1")
 	private MappingValue<Integer> property;

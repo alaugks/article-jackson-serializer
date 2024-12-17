@@ -12,27 +12,8 @@ import org.junit.jupiter.api.Test;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MappingTableSerializerDeserializerTest {
-
-	//    public static final HashMap<String, String> payloadAsArray = new HashMap<>() {
-	//        {
-	//            put("46", "2");
-	//            put("1", "Jane");
-	//            put("2", "Doe");
-	//            put("3", "jane.doe@example.com");
-	//            put("4", "1989-11-09");
-	//            put("100674", "1");
-	//        }
-	//    };
-	//
-	//    public String emarsysPayload;
-	//
-	//    @BeforeEach
-	//    public void setUpBefore() throws JsonProcessingException {
-	//        this.emarsysPayload = new ObjectMapper().writeValueAsString(payloadAsArray);
-	//    }
 
 	String emarsysPayload = """
 			{
@@ -40,8 +21,7 @@ class MappingTableSerializerDeserializerTest {
 			    "2": "Doe",
 			    "3": "jane.doe@example.com",
 			    "4": "1989-11-09",
-			    "46": "2",
-			    "100674": "1"
+			    "46": "2"
 			}
 			""";
 
@@ -53,7 +33,6 @@ class MappingTableSerializerDeserializerTest {
 		contact.setLastname("Doe");
 		contact.setEmail("jane.doe@example.com");
 		contact.setBirthday(LocalDate.of(1989, 11, 9));
-		contact.setMarketingInformation(true);
 		String json = new ObjectMapper().writeValueAsString(contact);
 		assertThatJson(this.emarsysPayload)
 				.when(Option.IGNORING_ARRAY_ORDER)
@@ -68,8 +47,6 @@ class MappingTableSerializerDeserializerTest {
 		assertEquals("Doe", contact.getLastname());
 		assertEquals("jane.doe@example.com", contact.getEmail());
 		assertEquals(LocalDate.of(1989, 11, 9), contact.getBirthday());
-		assertTrue(contact.getMarketingInformation());
-		assertTrue(contact.isMarketingInformation());
 	}
 
 	@Test

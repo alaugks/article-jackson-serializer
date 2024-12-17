@@ -2,6 +2,7 @@ package com.article.jackson.fixtures;
 
 import java.time.LocalDate;
 
+import com.article.jackson.annotation.MappingItem;
 import com.article.jackson.annotation.MappingTable;
 import com.article.jackson.serializer.MappingValue;
 import com.article.jackson.serializer.MappingValueDeserializer;
@@ -41,16 +42,14 @@ public class ContactDto {
 	private LocalDate birthday;
 
 	@JsonProperty("46")
-	@MappingTable(map = "{\"1\": \"MALE\", \"2\": \"FEMALE\", \"6\": \"DIVERS\"}")
+    @MappingTable(items = {
+            @MappingItem(fieldValueId = "1", value = "MALE"),
+            @MappingItem(fieldValueId = "2", value = "FEMALE"),
+            @MappingItem(fieldValueId = "6", value = "DIVERS")
+    })
 	@JsonSerialize(using = MappingValueSerializer.class)
 	@JsonDeserialize(using = MappingValueDeserializer.class)
 	private MappingValue<String> salutation;
-
-	@JsonProperty("100674")
-	@MappingTable(map = "{\"1\": true, \"2\": false}")
-	@JsonSerialize(using = MappingValueSerializer.class)
-	@JsonDeserialize(using = MappingValueDeserializer.class)
-	private MappingValue<Boolean> marketingInformation;
 
 	public String getFirstname() {
 		return firstname;
@@ -90,17 +89,5 @@ public class ContactDto {
 
 	public void setSalutation(String salutation) {
 		this.salutation = new MappingValue<>(salutation);
-	}
-
-	public Boolean getMarketingInformation() {
-		return this.isMarketingInformation();
-	}
-
-	public Boolean isMarketingInformation() {
-		return marketingInformation.getValue();
-	}
-
-	public void setMarketingInformation(Boolean marketingInformation) {
-		this.marketingInformation = new MappingValue<>(marketingInformation);
 	}
 }
