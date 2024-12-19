@@ -3,8 +3,8 @@ package com.article.jackson.serializer;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import com.article.jackson.dto.ContactDto;
 import com.article.jackson.exception.MappingTableRuntimeException;
-import com.article.jackson.fixtures.ContactDto;
 import com.article.jackson.fixtures.ContactDtoAnnotationNotSet;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

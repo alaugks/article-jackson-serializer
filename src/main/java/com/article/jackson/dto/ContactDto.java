@@ -1,4 +1,4 @@
-package com.article.jackson.fixtures;
+package com.article.jackson.dto;
 
 import java.time.LocalDate;
 
@@ -25,6 +25,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 		isGetterVisibility = JsonAutoDetect.Visibility.NONE
 )
 public class ContactDto {
+
 	@JsonProperty("1")
 	private String firstname;
 
@@ -41,13 +42,13 @@ public class ContactDto {
 	private LocalDate birthday;
 
 	@JsonProperty("46")
-	@MappingTable(map = "{\"1\": \"MALE\", \"2\": \"FEMALE\", \"6\": \"DIVERS\"}")
+	@MappingTable(map = Maps.SALUTATION)
 	@JsonSerialize(using = MappingValueSerializer.class)
 	@JsonDeserialize(using = MappingValueDeserializer.class)
 	private MappingValue<String> salutation;
 
 	@JsonProperty("100674")
-	@MappingTable(map = "{\"1\": true, \"2\": false}")
+	@MappingTable(map = Maps.MARKETING_INFORMATION)
 	@JsonSerialize(using = MappingValueSerializer.class)
 	@JsonDeserialize(using = MappingValueDeserializer.class)
 	private MappingValue<Boolean> marketingInformation;
