@@ -1,8 +1,6 @@
 package com.article.jackson.serializer;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.Arrays;
 import java.util.Map;
 
 import com.article.jackson.annotation.MappingTableMapReader;
@@ -11,33 +9,22 @@ import com.fasterxml.jackson.databind.BeanProperty;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.deser.ContextualDeserializer;
-import com.fasterxml.jackson.databind.type.SimpleType;
 
 public class MappingValueDeserializer extends JsonDeserializer<MappingValue<?>> implements ContextualDeserializer {
 
-	private final String[] supportedTypes = {"String", "Boolean"};
-
 	private final Map<String, Object> map;
 
-	private final Type type;
-
 	public MappingValueDeserializer() {
-		this(null, null);
+		this(null);
 	}
 
-	public MappingValueDeserializer(Map<String, Object> map, Type type) {
+	public MappingValueDeserializer(Map<String, Object> map) {
 		this.map = map;
-		this.type = type;
 	}
 
 	@Override
 	public MappingValue<?> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
 		String fieldValue = jsonParser.getText();
-		String simpleNameType = ((SimpleType) this.type).getBindings().getTypeParameters().get(0).getRawClass().getSimpleName();
-
-		if (Arrays.stream(supportedTypes).noneMatch(simpleNameType::equalsIgnoreCase)) {
-			throw new IOException(String.format("Type \"%s\" not supported", simpleNameType));
-		}
 
 		return new MappingValue<>(this.map.entrySet().stream()
 				.filter(e -> e.getKey().equals(fieldValue))
@@ -49,8 +36,7 @@ public class MappingValueDeserializer extends JsonDeserializer<MappingValue<?>> 
 	@Override
 	public JsonDeserializer<?> createContextual(DeserializationContext ctxt, BeanProperty property) {
 		return new MappingValueDeserializer(
-				new MappingTableMapReader(property).getMap(),
-				property.getType()
+				new MappingTableMapReader(property).getMap()
 		);
 	}
 }
