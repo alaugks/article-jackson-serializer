@@ -21,7 +21,12 @@ public class MappingTableMapReader {
 			MappingTable annotation = property.getAnnotation(MappingTable.class);
 
 			if (annotation == null) {
-				throw new MappingTableRuntimeException("Annotation @MappingTable not set at property");
+				throw new MappingTableRuntimeException(
+						String.format(
+								"Annotation @MappingTable not set at property %s",
+								this.property.getMember().getFullName()
+						)
+				);
 			}
 
 			return new ObjectMapper().readValue(

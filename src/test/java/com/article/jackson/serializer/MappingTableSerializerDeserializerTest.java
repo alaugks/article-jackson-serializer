@@ -3,7 +3,10 @@ package com.article.jackson.serializer;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import com.article.jackson.exception.MappingTableRuntimeException;
 import com.article.jackson.fixtures.ContactDto;
+import com.article.jackson.fixtures.ContactDtoAnnotationNotSet;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.javacrumbs.jsonunit.core.Option;
 import org.junit.jupiter.api.Test;
@@ -11,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class MappingTableSerializerDeserializerTest {
 
@@ -50,5 +54,18 @@ class MappingTableSerializerDeserializerTest {
 		assertEquals(LocalDate.of(1989, 11, 9), contact.getBirthday());
 		assertTrue(contact.getMarketingInformation());
 		assertTrue(contact.isMarketingInformation());
+	}
+
+	@Test
+	void testToStringTryCatchIdiom() {
+		try {
+			new ObjectMapper().readValue(this.emarsysPayload, ContactDtoAnnotationNotSet.class);
+			fail("Expected an MappingTableRuntimeException to be thrown");
+		} catch (IndexOutOfBoundsException | JsonProcessingException | MappingTableRuntimeException e) {
+			assertEquals(
+					"Annotation @MappingTable not set at property com.article.jackson.fixtures.ContactDtoAnnotationNotSet#property",
+					e.getMessage()
+			);
+		}
 	}
 }
