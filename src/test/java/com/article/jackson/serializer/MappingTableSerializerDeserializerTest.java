@@ -52,7 +52,6 @@ class MappingTableSerializerDeserializerTest {
 		assertEquals("Doe", contact.getLastname());
 		assertEquals("jane.doe@example.com", contact.getEmail());
 		assertEquals(LocalDate.of(1989, 11, 9), contact.getBirthday());
-		assertTrue(contact.getMarketingInformation());
 		assertTrue(contact.isMarketingInformation());
 	}
 

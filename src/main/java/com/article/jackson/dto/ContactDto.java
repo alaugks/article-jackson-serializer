@@ -93,10 +93,6 @@ public class ContactDto {
 		this.salutation = new MappingValue<>(salutation);
 	}
 
-	public Boolean getMarketingInformation() {
-		return this.isMarketingInformation();
-	}
-
 	public Boolean isMarketingInformation() {
 		return marketingInformation.getValue();
 	}
