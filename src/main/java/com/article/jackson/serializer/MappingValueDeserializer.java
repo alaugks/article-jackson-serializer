@@ -1,16 +1,14 @@
 package com.article.jackson.serializer;
 
-import java.io.IOException;
 import java.util.Map;
 
 import com.article.jackson.annotation.MappingTableMapReader;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.BeanProperty;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.deser.ContextualDeserializer;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.BeanProperty;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 
-public class MappingValueDeserializer extends JsonDeserializer<MappingValue<?>> implements ContextualDeserializer {
+public class MappingValueDeserializer extends ValueDeserializer<MappingValue<?>> {
 
 	private final Map<String, Object> map;
 
@@ -23,8 +21,8 @@ public class MappingValueDeserializer extends JsonDeserializer<MappingValue<?>> 
 	}
 
 	@Override
-	public MappingValue<?> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
-		String fieldValue = jsonParser.getText();
+	public MappingValue<?> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) {
+		String fieldValue = jsonParser.getString();
 
 		return new MappingValue<>(this.map.entrySet().stream()
 				.filter(e -> e.getKey().equals(fieldValue))
@@ -34,7 +32,7 @@ public class MappingValueDeserializer extends JsonDeserializer<MappingValue<?>> 
 	}
 
 	@Override
-	public JsonDeserializer<?> createContextual(DeserializationContext ctxt, BeanProperty property) {
+	public ValueDeserializer<?> createContextual(DeserializationContext ctxt, BeanProperty property) {
 		return new MappingValueDeserializer(
 				new MappingTableMapReader(property).getMap()
 		);

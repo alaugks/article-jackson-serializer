@@ -1,13 +1,12 @@
 package com.article.jackson.serializer;
 
-import java.io.IOException;
 import java.time.LocalDate;
 
 import com.article.jackson.dto.ContactDto;
 import com.article.jackson.exception.MappingTableRuntimeException;
 import com.article.jackson.fixtures.ContactDtoAnnotationNotSet;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
 import net.javacrumbs.jsonunit.core.Option;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +29,7 @@ class MappingTableSerializerDeserializerTest {
 			""";
 
 	@Test
-	void serialize() throws IOException {
+	void serialize() {
 		ContactDto contact = new ContactDto();
 		contact.setSalutation("FEMALE");
 		contact.setFirstname("Jane");
@@ -45,7 +44,7 @@ class MappingTableSerializerDeserializerTest {
 	}
 
 	@Test
-	void deserialize() throws IOException {
+	void deserialize() {
 		ContactDto contact = new ObjectMapper().readValue(this.emarsysPayload, ContactDto.class);
 		assertEquals("FEMALE", contact.getSalutation());
 		assertEquals("Jane", contact.getFirstname());
@@ -60,7 +59,7 @@ class MappingTableSerializerDeserializerTest {
 		try {
 			new ObjectMapper().readValue(this.emarsysPayload, ContactDtoAnnotationNotSet.class);
 			fail("Expected an MappingTableRuntimeException to be thrown");
-		} catch (IndexOutOfBoundsException | JsonProcessingException | MappingTableRuntimeException e) {
+		} catch (IndexOutOfBoundsException | JacksonException | MappingTableRuntimeException e) {
 			assertEquals(
 					"Annotation @MappingTable not set at property com.article.jackson.fixtures.ContactDtoAnnotationNotSet#property",
 					e.getMessage()

@@ -3,7 +3,7 @@ package com.article.jackson.annotation;
 import java.util.Map;
 
 import com.article.jackson.exception.MappingTableRuntimeException;
-import com.fasterxml.jackson.databind.BeanProperty;
+import tools.jackson.databind.BeanProperty;
 
 public class MappingTableMapReader {
 
