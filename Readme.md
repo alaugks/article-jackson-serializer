@@ -3,3 +3,10 @@
 **A part of article Series: Mapping FieldValueIDs for the payload of the Emarsys API**
 
 https://dev.to/elevado/create-a-custom-jackson-jsonserializer-und-jsondeserializer-for-mapping-values-48h7
+
+## Jackson Version
+
+| Jackson Version | Tag |
+| --- | --- |
+| 2.x | [jackson-v2](https://github.com/alaugks/article-jackson-serializer/releases/tag/jackson-v2) |
+| 3.x | [jackson-v3](https://github.com/alaugks/article-jackson-serializer/releases/tag/jackson-v3) |
