@@ -8,5 +8,5 @@ https://dev.to/elevado/create-a-custom-jackson-jsonserializer-und-jsondeserializ
 
 | Jackson Version | Tag |
 | --- | --- |
-| 2.x | [jackson-v2](https://github.com/alaugks/article-jackson-serializer/releases/tag/jackson-v2) |
-| 3.x | [jackson-v3](https://github.com/alaugks/article-jackson-serializer/releases/tag/jackson-v3) |
+| 2.x | [jackson-v2](https://github.com/alaugks/article-jackson-serializer/tree/jackson-v2) |
+| 3.x | [jackson-v3](https://github.com/alaugks/article-jackson-serializer/tree/jackson-v3) |
