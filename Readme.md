@@ -1,4 +1,4 @@
-# Create a custom JsonSerializer und JsonDeserializer for Jackson to mapping values
+# Create a custom JsonSerializer und JsonDeserializer for Jackson to mapping values (Jackson version 2)
 
 **A part of article Series: Mapping FieldValueIDs for the payload of the Emarsys API**
 
