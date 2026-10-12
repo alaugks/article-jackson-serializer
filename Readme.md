@@ -2,7 +2,7 @@
 
 **A part of article Series: Mapping FieldValueIDs for the payload of the Emarsys API**
 
-https://dev.to/elevado/create-a-custom-jackson-jsonserializer-und-jsondeserializer-for-mapping-values-48h7
+https://alaugks.dev/article/create-a-custom-jackson-jsonserializer-und-jsondeserializer-for-mapping-values.html
 
 ## Jackson Version
 
